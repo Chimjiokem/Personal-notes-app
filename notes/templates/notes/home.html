@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Notes App💟</title>
+    <link rel="stylesheet" href="{% static 'css/notes.css' %}" />
+  </head>
+  <body>
+    <nav>
+      <h2>This is Chimjiokem's practice notes app. She loves coding.</h2>
+      <h3>
+        <ul>
+          <a href="{% url 'notes:add_note' %}">ADD NOTES HERE</a>
+          <p>SEE ADDED NOTES BELOW</p>
+        </ul>
+      </h3>
+    </nav>
+    <main>
+      {% block content %} {% for note in notes %}
+      <p>
+        <a href="{% url 'notes:note_detail' note.id %}">{{ note.title }}</a>
+      </p>
+      {% endfor %}
+      <p>Today is {{ today }}</p>
+      {% endblock content %}
+    </main>
+  </body>
+</html>

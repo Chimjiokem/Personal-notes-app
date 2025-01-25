@@ -1,0 +1,22 @@
+{% extends "notes/home.html" %}
+{% load static %}
+
+{% block title %}
+Add Note
+{% endblock title %}
+
+{% block content %}
+    <h1>See new notes here</h1>
+    <ul>
+        {% for note in notes %}
+        <li>{{ note.title }}</li>
+        <li>{{ note.content }}</li>
+        {% endfor %}
+    </ul>
+    <form method="POST">
+        {% csrf_token %}
+        {{ title_form.as_p }}
+        {{ content_form.as_p }}
+        <button type="submit">Add Note</button>
+    </form>
+{% endblock content %}
